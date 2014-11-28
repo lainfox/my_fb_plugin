@@ -16,27 +16,18 @@ class Onebox::Engine::FacebookOnebox
   def video_id
     match = uri.path.match(/\/video.php\?v=([^\&]+)/)
     return match[1] if match && match[1]
-  	#if params['v']
-    #  return params['v']
-    #end
 
-    nil
-   rescue
-   	return nil  	
+    nil	
   end
 
 
   def to_html
   	if video_id
-      # Avoid making HTTP requests if we are able to get the video ID from the
-      # URL.
-      html = "<iframe width=\"640\" height=\"360\" src=\"https://www.facebook.com/video/embed?video_id=#{video_id}\" frameborder=\"0\" allowfullscreen></iframe>"
+      "<iframe width=\"640\" height=\"360\" src=\"https://www.facebook.com/video/embed?video_id=#{video_id}\" frameborder=\"0\" allowfullscreen></iframe>"
     else
-      # Fall back to making HTTP requests.
-      html = raw[:html] || ""
+      #raw[:html] || ""
+      "#{@url}<div>cant get video_id</div>"
     end
-
-    html
   end
 
 end
