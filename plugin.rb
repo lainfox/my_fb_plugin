@@ -9,7 +9,7 @@
 class Onebox::Engine::FacebookOnebox
   include Onebox::Engine
 
-  matches_regexp /^https?:\/\/(?:www\.)?(?:m\.)?(?:facebook\.com/video.php?v=).+$/
+  matches_regexp /^https?:\/\/(?:www\.)?(?:m\.)?(?:facebook\.com\/video.php\?v\=).+$/
   #matches_regexp /^https?:\/\/(?:www\.)?(?:m\.)?(?:facebook\.com\/(video.php|permalink.php))\/.+$/
 
   def video_id
