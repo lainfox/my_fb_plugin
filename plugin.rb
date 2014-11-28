@@ -10,24 +10,19 @@
 class Onebox::Engine::FacebookOnebox
   include Onebox::Engine
 
-  matches_regexp /^https?:\/\/(?:www\.)?(?:m\.)?(?:facebook\.com\/video.php\?v\=).+$/
-  #matches_regexp /^https?:\/\/(?:www\.)?(?:m\.)?(?:facebook\.com\/(video.php|permalink.php))\/.+$/
-
-  def video_id
-    match = uri.path.match(/\/video.php\?v=([^\&]+)/)
-    return match[1] if match && match[1]
-
-    nil	
-  end
-
-
+  REGEX = /^https?:\/\/(?:www\.)?(?:m\.)?(?:facebook\.com\/video.php\?v=)(\d+)\S*$/
+  matches_regexp REGEX
+  
   def to_html
-  	if video_id
-      "<iframe width=\"640\" height=\"360\" src=\"https://www.facebook.com/video/embed?video_id=#{video_id}\" frameborder=\"0\" allowfullscreen></iframe>"
-    else
-      #raw[:html] || ""
-      "#{@url}<div>cant get video_id</div>"
-    end
-  end
+  	video_id = @url.match(REGEX)[1]
+    
+    <<HTML
+<div class="fb-video">
+  <iframe src="https://www.facebook.com/video/embed?video_id=#{video_id}" frameborder="0" allowfullscreen></iframe>
+  <p>#{@url}</p>
+</div>
+HTML
+    
+   end
 
 end
