@@ -14,7 +14,7 @@ module Onebox
 			def to_html
 				video_id = @url.match(REGEX)[1]
 				video_src = "https://www.facebook.com/video/embed?video_id=#{video_id}"
-				"<div class='fb-video'><iframe src='#{video_src}'' width='640' height='360' frameborder='0' allowfullscreen></iframe><p><span class='fb-helper'>클릭하면 플레이.</span><br> via <a href='#{@url}'>#{@url}</a></p></div>"
+				"<div class='fb-video'><iframe src='#{video_src}'' frameborder='0' allowfullscreen></iframe><p><span class='fb-helper'>클릭하면 플레이.</span><br> via <a href='#{@url}'>#{@url}</a></p></div>"
 			end
 
 		end
