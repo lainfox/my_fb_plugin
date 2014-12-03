@@ -12,7 +12,7 @@ module Onebox
 			matches_regexp REGEX
 
 			def to_html
-				"<div class='fb-post' data-href='#{@url}' data-width='640'></div>"
+				"<div class='fb-post' data-href='#{@url}' data-width='640'><div class='fb-xfbml-parse-ignore'>via <a href='#{@url}'>#{@url}</a></div></div>"
 			end
 
 			# def to_html
